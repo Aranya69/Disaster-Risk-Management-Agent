@@ -15,11 +15,11 @@ DEMO_USERS = {
 }
 
 # API configurations
-GEMINI_API_KEY = 'AIzaSyATb_BFstWDrhDyRP6OCFEW9Pnn5JLWvjs'
+GEMINI_API_KEY = ''
 TWILIO_ACCOUNT_SID = 'your-twilio-account-sid'
 TWILIO_AUTH_TOKEN = 'your-twilio-auth-token'
 TWILIO_PHONE_NUMBER = 'your-twilio-phone-number'
-WEATHER_API_KEY = 'aa5c0ba811a47f0338ec3ca7af84e5b0'
+WEATHER_API_KEY = ''
 
 # Initialize LangChain LLM with Gemini (using free tier model)
 llm = ChatGoogleGenerativeAI(
