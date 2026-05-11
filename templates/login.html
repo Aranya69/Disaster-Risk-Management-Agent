@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Weather Disaster Monitor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+        h2 { color: #333; margin-bottom: 30px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; }
+        input:focus { outline: none; border-color: #667eea; }
+        button { width: 100%; padding: 12px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        button:hover { background: #5568d3; }
+        .message { padding: 12px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .demo-info { background: #e7f3ff; padding: 15px; border-radius: 5px; margin-top: 20px; font-size: 13px; color: #004085; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🌪️ Weather Disaster Monitor</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="demo-info">
+            <strong>Demo Accounts:</strong><br>
+            Username: demo | Password: password123<br>
+            Username: admin | Password: admin123
+        </div>
+    </div>
+</body>
+</html>

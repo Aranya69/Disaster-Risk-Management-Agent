@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Weather Monitor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fa; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { margin: 0; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; }
+        input:focus { outline: none; border-color: #667eea; }
+        button { padding: 12px 24px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        button:hover { background: #218838; }
+        .logout { background: #dc3545; padding: 10px 20px; text-decoration: none; color: white; border-radius: 5px; }
+        .logout:hover { background: #c82333; }
+        .message { padding: 12px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #f8d7da; color: #721c24; }
+        .success { background: #d4edda; color: #155724; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .info-box { background: #e7f3ff; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #667eea; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌪️ Weather Disaster Agent</h1>
+        <div>
+            <span>Welcome, {{ username }}!</span>
+            <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+
+            <div class="info-box">
+                <strong>🤖 AI-Powered Monitoring</strong><br>
+                This system uses LangChain + Gemini AI to intelligently analyze weather conditions and automatically send SMS alerts for potential disasters.
+            </div>
+
+            <h2>Monitor Weather Conditions</h2>
+            <form method="POST" action="{{ url_for('monitor_weather') }}">
+                <input type="text" name="city" placeholder="Enter city name (e.g., New York, London)" required>
+                <input type="tel" name="phone_number" placeholder="Phone number with country code (e.g., +1234567890)" required>
+                <button type="submit">🔍 Start Monitoring</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
